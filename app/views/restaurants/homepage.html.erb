@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Homepage</h1>
+
+<% @restaurants.each do |restaurant|  %>
+  <h2><%= restaurant.nome %></h2>
+  <h3><%= restaurant.endereco %></h3>
+  <h4><%= restaurant.telefone %></h4>
+<% end %>
+
+<% @dishes.each do |dish| %>
+  <tr>
+    <td><b><%= dish.descricao %></b></td>
+    <td><%= dish.preco %></td>
+    <td><%= dish.tempopreparo %></td>
+    <td><%= link_to 'Visualisar', dish %></td>
+    <td><%= link_to 'Editar', edit_dish_path(dish) %></td>
+    <td><%= link_to 'Excluir', dish, method: :delete, data: { confirm: 'Você tem certeza disso?' } %></td>
+  </tr>
+  <td colspan="6" style="padding-bottom: 15px">
+
+    <span>Ingredients: </span>
+    <% dish.ingredients.order('descricao').each  {|ingredient| %>
+      <i><%= ingredient.descricao %>, </i>
+    <% } %>
+  </td>
+
+<% end %>
+<%= form_tag('/restaurants/homepage', method: 'post') do %>
+  <%=  text_field_tag(:term) %>
+  <%=  submit_tag('Search') %>
+<% end %>

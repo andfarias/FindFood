@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @dish.descricao %>
+</p>
+
+<p>
+  <strong>Preco:</strong>
+  <%= @dish.preco %>
+</p>
+
+<p>
+  <strong>Tempopreparo:</strong>
+  <%= @dish.tempopreparo %>
+</p>
+
+<p>
+  <strong>Ingredients:</strong>
+  <% @dish.ingredients.each  {|ingredient| %>
+    <%= ingredient.descricao + ', '%>
+  <% } %>
+</p>
+
+<%= link_to 'Edit', edit_dish_path(@dish) %> |
+<%= link_to 'Back', dishes_path %>

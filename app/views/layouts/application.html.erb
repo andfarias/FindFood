@@ -9,8 +9,55 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body style="margin: 0 auto;">
+
     <%= render '/layouts/menu' %>
+
     <%= yield %>
+
+    <!-- FOOTER -->
+    <footer style="background: #333;">
+      <div class="container">
+        <div class="row" style="color: #fff;">
+
+          <div class="col-md-5 col-sm-6">
+            <h2>FindFood</h2>
+            <p>São José das Palmeiras - PR<br>R. Gov. M da Rocha<br>CEP: 85.898.000</p>
+
+
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <div class="footer-info">
+              <h2>Contato</h2>
+              <p><a href="tel:010-090-0780" class="link-a">010-090-0780</a></p>
+              <p><a href="mailto:info@company.com" class="link-a">info@company.com</a></p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-12">
+
+            <h2>Siga-nos</h2>
+            <ul class="social-icon">
+              <li><a href="#" class="fa fa-twitter link-a"></a></li>
+              <li><a href="#" class="fa fa-facebook link-a"></a></li>
+              <li><a href="#" class="fa fa-instagram link-a"></a></li>
+              <li><a href="#" class="fa fa-linkedin link-a"></a></li>
+            </ul>
+
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="col-md-12 col-sm-12">
+            <div class="copyright-text">
+              <p>Copyright © 2018 Company FindFood | Design: <a href="https://www.facebook.com/tooplate" target="_parent">Tooplate</a></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
   </body>
 </html>

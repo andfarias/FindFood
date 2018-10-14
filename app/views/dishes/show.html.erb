@@ -1,26 +1,60 @@
+<style>
+  .custom-navbar {
+    margin-bottom: 0;
+    background-color: #bc0005;
+    padding: 20px 0;
+    position: static;
+  }
+</style>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @dish.descricao %>
-</p>
+<div class="container">
+  <div class="row">
 
-<p>
-  <strong>Preco:</strong>
-  <%= @dish.preco %>
-</p>
+<!--    <p id="notice"><%#= notice %></p>-->
 
-<p>
-  <strong>Tempopreparo:</strong>
-  <%= @dish.tempopreparo %>
-</p>
+<!--    <p>-->
+<!--      <strong>Descricao:</strong>-->
+      <%#= @dish.descricao %>
+<!--    </p>-->
 
-<p>
-  <strong>Ingredients:</strong>
-  <% @dish.ingredients.each  {|ingredient| %>
-    <%= ingredient.descricao + ', '%>
-  <% } %>
-</p>
+<!--    <p>-->
+<!--      <strong>Preco:</strong>-->
+      <%#= @dish.preco %>
+<!--    </p>-->
 
-<%= link_to 'Edit', edit_dish_path(@dish) %> |
-<%= link_to 'Back', dishes_path %>
+<!--    <p>-->
+<!--      <strong>Tempopreparo:</strong>-->
+      <%#= @dish.tempopreparo %>
+<!--    </p>-->
+
+<!--    <p>-->
+<!--      <strong>Ingredients:</strong>-->
+
+<!--    </p>-->
+
+    <div class="col-md-6 col-sm-6 pb-1 pl-0">
+      <div class="card">
+        <div class="card-body">
+          <h4><b><%= @dish.nome %></b></h4>
+          <p>R$ <%= @dish.preco %></p>
+          <p>Tempo de preparo: <%= @dish.tempopreparo.strftime("%H:%M") %></p>
+          <p>Categoria: <%= @dish.category.nome %></p>
+
+          <p>Ingredientes:
+            <% @dish.ingredients.each {|ingredient| %>
+              <tr>
+                <td><b><%= ingredient.descricao %></b></td>
+              </tr>
+            <% } %>
+          </p>
+
+          <%= link_to 'Edit', edit_dish_path(@dish) %> |
+          <%= link_to 'Back', dishes_path %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

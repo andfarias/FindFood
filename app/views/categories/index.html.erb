@@ -1,27 +1,40 @@
+<style>
+  .custom-navbar {
+    margin-bottom: 0;
+    background-color: #bc0005;
+    padding: 20px 0;
+    position: static;
+  }
+</style>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Categories</h1>
+<div class="container mb-1">
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1>Categorias</h1>
 
-  <tbody>
+  <div class="row">
+
     <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.nome %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="col-md-6 col-sm-6 pb-1 pl-0">
+        <div class="card">
+          <div class="card-body">
+            <tr>
+              <td><b><%= category.nome %></b></td>
+              <div class="float-rigth">
+                <span><%= link_to 'Visualisar', category%></span>
+                <span><%= link_to 'Editar', edit_category_path(category) %></span>
+                <span><%= link_to 'Excluir', category, method: :delete, data: { confirm: 'Você tem certeza disso?' } %></span>
+              </div>
+            </tr>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+  </div>
 
-<%= link_to 'New Category', new_category_path %>
+  <%= link_to 'New Category', new_category_path %>
+
+</div>
+

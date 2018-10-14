@@ -1,3 +1,12 @@
+<style>
+  .custom-navbar {
+    margin-bottom: 0;
+    background-color: #bc0005;
+    padding: 20px 0;
+    position: static;
+  }
+</style>
+
 <%= form_with(model: dish, local: true) do |form| %>
   <% if dish.errors.any? %>
     <div id="error_explanation">
@@ -23,19 +32,20 @@
 
   <div class="field">
     <%= form.label :nome %>
-    <%= form.text_field :nome %>
+    <%= form.text_field :nome, class: 'form-control form-edit' %>
   </div>
 
   <div class="field">
     <%= form.label :preco %>
-    <%= form.text_field :preco %>
+    <%= form.text_field :preco, class: 'form-control form-edit' %>
   </div>
 
   <div class="field">
     <%= form.label :tempopreparo %>
-    <%= form.time_select :tempopreparo %>
+    <%= form.time_select :tempopreparo, class: 'form-control form-edit' %>
   </div>
 
+  <label>Ingredientes</label>
   <% for ingredient in Ingredient.all %>
     <div>
       <%= check_box_tag "dish[ingredient_ids][]", ingredient.id, @dish.ingredients.include?(ingredient) %>
@@ -43,7 +53,7 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions float-left">
+    <%= form.submit class: 'btn bnt-sucess' %>
   </div>
 <% end %>

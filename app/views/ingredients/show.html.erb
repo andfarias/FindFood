@@ -1,9 +1,33 @@
+<style>
+  .custom-navbar {
+    margin-bottom: 0;
+    background-color: #bc0005;
+    padding: 20px 0;
+    position: static;
+  }
+</style>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @ingredient.descricao %>
-</p>
+<div class="container">
+  <div class="row">
 
-<%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
-<%= link_to 'Back', ingredients_path %>
+    <p id="notice"><%= notice %></p>
+
+    <div class="col-md-6 col-sm-6 pb-1 pl-0">
+      <div class="card">
+        <div class="card-body">
+          <tr>
+            <td><b><%= @ingredient.descricao %></b></td>
+          </tr>
+          <div class="float-rigth">
+            <%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
+            <%= link_to 'Back', ingredients_path %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

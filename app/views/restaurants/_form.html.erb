@@ -1,32 +1,41 @@
+<style>
+  .custom-navbar {
+    margin-bottom: 0;
+    background-color: #bc0005;
+    padding: 20px 0;
+    position: static;
+  }
+</style>
+
 <%= form_with(model: restaurant, local: true) do |form| %>
   <% if restaurant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
 
       <ul>
-      <% restaurant.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% restaurant.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :nome %>
-    <%= form.text_field :nome %>
+    <%= form.text_field :nome, class: 'form-control form-edit' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :endereco %>
-    <%= form.text_field :endereco %>
+    <%= form.text_field :endereco, class: 'form-control form-edit' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :telefone %>
-    <%= form.text_field :telefone %>
+    <%= form.text_field :telefone, class: 'form-control form-edit' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions float-left">
+    <%= form.submit class: 'btn bnt-sucess' %>
   </div>
 <% end %>

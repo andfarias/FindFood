@@ -9,10 +9,21 @@ class RestaurantsController < ApplicationController
 
   def homepage
     @dishes = Dish.all
+    @categories = Category .all
+
     @restaurants = Restaurant.recents.order("nome desc")
     @restaurants = Restaurant.where(category_id: params[:category_id]) unless params[:category_id].blank? #só executa se a linha de código a menos que o parametro for vazio
-    #@restaurants = @restaurants.where('UPPER(UPPER(DISHES.NOME)) LIKE ?', "%#{params[:term].upcase}%") unless params[:term].blank?
+    @restaurants = @restaurants.where('UPPER(UPPER(nome)) LIKE ?', "%#{params[:term].upcase}%") unless params[:term].blank?
     @dishes = @dishes.where('UPPER(DISHES.NOME) LIKE ?', "%#{params[:term].upcase}%") unless params[:term].blank?
+    @categories = @categories.where('UPPER(CATEGORIES.NOME) LIKE ?', "%#{params[:term].upcase}%") unless params[:term].blank?
+
+    #Numero de resultados para os botões
+    @numero_restaurantes = @restaurants.size
+    @numero_pratos = @dishes.size
+    @numero_categorias = @categories.size
+
+    @termo = 'xxxx'
+    @termo = params[:term]  unless params[:term].blank?
   end
   # GET /restaurants/1
   # GET /restaurants/1.json

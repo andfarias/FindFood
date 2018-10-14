@@ -1,19 +1,51 @@
+<style>
+  .custom-navbar {
+    margin-bottom: 0;
+    background-color: #bc0005;
+    padding: 20px 0;
+    position: static;
+  }
+</style>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @restaurant.nome %>
-</p>
+<div class="container">
+  <div class="row">
 
-<p>
-  <strong>Endereco:</strong>
-  <%= @restaurant.endereco %>
-</p>
+    <div class="col-md-12 pb-1 pl-0">
+      <div class="card">
+        <div class="card-body">
+          <h2><%= @restaurant.nome %></h2>
+          <h3><%= @restaurant.endereco %></h3>
+          <h4><%= @restaurant.telefone %></h4>
 
-<p>
-  <strong>Telefone:</strong>
-  <%= @restaurant.telefone %>
-</p>
+          <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+          <%= link_to 'Back', restaurants_path %>
+        </div>
+      </div>
+    </div>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <p>Cardápio</p>
+    <% @restaurant.dishes.order('descricao').each {|dish| %>
+
+      <div class="col-md-6 col-sm-6 pb-1 pl-0">
+        <div class="card">
+          <div class="card-body">
+            <h4><b><%= dish.nome %></b></h4>
+            <p>R$ <%= dish.preco %></p>
+            <p>Tempo de preparo: <%= dish.tempopreparo.strftime("%H:%M") %></p>
+            <%= link_to 'Visualisar', dish, class: "link-a" %>
+          </div>
+        </div>
+      </div>
+
+    <% } %>
+
+  </div>
+</div>

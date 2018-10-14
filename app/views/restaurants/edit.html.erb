@@ -1,6 +1,12 @@
-<h1>Editing Restaurant</h1>
+<div class="container mb-1">
+  <div class="row">
+    <h1>Editar Restaurante</h1>
 
-<%= render 'form', restaurant: @restaurant %>
+    <%= render 'form', restaurant: @restaurant %>
 
-<%= link_to 'Show', @restaurant %> |
-<%= link_to 'Back', restaurants_path %>
+    <%= link_to 'Ver', @restaurant, class: 'btn bnt-sucess' %>
+
+    <%= link_to 'Voltar', restaurants_path, class: 'btn bnt-sucess' %>
+
+  </div>
+</div>

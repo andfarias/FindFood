@@ -1,3 +1,12 @@
+<style>
+  .custom-navbar {
+    margin-bottom: 0;
+    background-color: #bc0005;
+    padding: 20px 0;
+    position: static;
+  }
+</style>
+
 <%= form_with(model: category, local: true) do |form| %>
   <% if category.errors.any? %>
     <div id="error_explanation">
@@ -13,10 +22,10 @@
 
   <div class="field">
     <%= form.label :nome %>
-    <%= form.text_field :nome %>
+    <%= form.text_field :nome, class: 'form-control form-edit' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions float-left">
+    <%= form.submit class: 'btn bnt-sucess' %>
   </div>
 <% end %>

@@ -1,6 +1,11 @@
-<h1>Editing Ingredient</h1>
+<div class="container mb-1">
+  <div class="row">
+    <h1>Editing Ingredient</h1>
 
-<%= render 'form', ingredient: @ingredient %>
+    <%= render 'form', ingredient: @ingredient %>
 
-<%= link_to 'Show', @ingredient %> |
-<%= link_to 'Back', ingredients_path %>
+    <%= link_to 'Show', @ingredient, class: 'btn bnt-sucess' %> |
+    <%= link_to 'Back', ingredients_path, class: 'btn bnt-sucess' %>
+
+  </div>
+</div>

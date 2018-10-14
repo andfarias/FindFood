@@ -1,38 +1,97 @@
+<!--<p id="notice"><%#= notice %></p>-->
+
+<!--<h1>Dishes</h1>-->
+
+<!--<table>-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--      <th>Descricao</th>-->
+<!--      <th>Preco</th>-->
+<!--      <th>Tempopreparo</th>-->
+<!--      <th colspan="3"></th>-->
+<!--    </tr>-->
+<!--  </thead>-->
+
+<!--  <tbody>-->
+    <%# @dishes.each do |dish| %>
+<!--      <tr>-->
+<!--        <td><b><%#= dish.descricao %></b></td>-->
+<!--        <td><%#= dish.preco %></td>-->
+<!--        <td><%#= dish.tempopreparo %></td>-->
+<!--        <td><%#= link_to 'Visualisar', dish %></td>-->
+<!--        <td><%#= link_to 'Editar', edit_dish_path(dish) %></td>-->
+<!--        <td><%#= link_to 'Excluir', dish, method: :delete, data: { confirm: 'Você tem certeza disso?' } %></td>-->
+<!--      </tr>-->
+<!--        <td colspan="6" style="padding-bottom: 15px">-->
+
+<!--          <span>Ingredients: </span>-->
+          <%# dish.ingredients.order('descricao').each  {|ingredient| %>
+<!--            <i><%#= ingredient.descricao %>, </i>-->
+          <%# } %>
+<!--        </td>-->
+    <%# end %>
+<!--  </tbody>-->
+<!--</table>-->
+
+
+
+<%#= link_to 'New Dish', new_dish_path %>
+
+
+<style>
+  .custom-navbar {
+    margin-bottom: 0;
+    background-color: #bc0005;
+    padding: 20px 0;
+    position: static;
+  }
+</style>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Dishes</h1>
+<div class="container mb-1">
 
-<table>
-  <thead>
-    <tr>
-      <th>Descricao</th>
-      <th>Preco</th>
-      <th>Tempopreparo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1>Pratos</h1>
 
-  <tbody>
+  <div class="row">
+
+    <%# @categories.each do |category| %>
+<!--      <div class="col-md-6 col-sm-6 pb-1 pl-0">-->
+<!--        <div class="card">-->
+<!--          <div class="card-body">-->
+<!--            <tr>-->
+<!--              <td><b><%#= category.nome %></b></td>-->
+<!--              <div class="float-rigth">-->
+<!--                <span><%#= link_to 'Visualisar', category%></span>-->
+<!--                <span><%#= link_to 'Editar', edit_category_path(category) %></span>-->
+<!--                <span><%#= link_to 'Excluir', category, method: :delete, data: { confirm: 'Você tem certeza disso?' } %></span>-->
+<!--              </div>-->
+<!--            </tr>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+    <%# end %>
+
     <% @dishes.each do |dish| %>
-      <tr>
-        <td><b><%= dish.descricao %></b></td>
-        <td><%= dish.preco %></td>
-        <td><%= dish.tempopreparo %></td>
-        <td><%= link_to 'Visualisar', dish %></td>
-        <td><%= link_to 'Editar', edit_dish_path(dish) %></td>
-        <td><%= link_to 'Excluir', dish, method: :delete, data: { confirm: 'Você tem certeza disso?' } %></td>
-      </tr>
-        <td colspan="6" style="padding-bottom: 15px">
 
-          <span>Ingredients: </span>
-          <% dish.ingredients.order('descricao').each  {|ingredient| %>
-            <i><%= ingredient.descricao %>, </i>
-          <% } %>
-        </td>
+      <div class="col-md-6 col-sm-6 pb-1 pl-0">
+        <div class="card">
+          <div class="card-body">
+            <h4><b><%= dish.nome %></b></h4>
+            <p>R$ <%= dish.preco %></p>
+            <p>Tempo de preparo: <%= dish.tempopreparo.strftime("%H:%M") %></p>
+            <span><%= link_to 'Visualisar', dish%></span>
+            <span><%= link_to 'Editar', edit_dish_path(dish) %></span>
+            <span><%= link_to 'Excluir', dish, method: :delete, data: { confirm: 'Você tem certeza disso?' } %></span>
+          </div>
+        </div>
+      </div>
+
     <% end %>
-  </tbody>
-</table>
 
+  </div>
 
+  <%= link_to 'New Dish', new_dish_path %>
 
-<%= link_to 'New Dish', new_dish_path %>
+</div>
+

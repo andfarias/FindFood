@@ -1,32 +1,200 @@
+<!-- HOME -->
+<section id="home" class="parallax-section">
+  <div class="overlay"></div>
+
+  <div class="container" style="z-index: 1001">
+    <div class="row">
+
+      <div class="col-md-8 col-sm-12">
+        <div>
+          <h1 style="font-weight: bolder;">Sua comida em um pedido!</h1>
+          <p style="font-weight: bolder;">FindFood entrega os pratos dos melhores restaurantes em sua casa</p>
+          <ul class="section-btn">
+            <a href="#notice" class="smoothScroll"><span data-hover="Descubra">Descubra</span></a>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <img src="/assets/imagem-inicial.jpg" class="" alt="" style="display: block;
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+      position: absolute;
+      top: -33px;"/>
+</section>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Homepage</h1>
 
-<% @restaurants.each do |restaurant|  %>
-  <h2><%= restaurant.nome %></h2>
-  <h3><%= restaurant.endereco %></h3>
-  <h4><%= restaurant.telefone %></h4>
-<% end %>
+<%#= form_tag('/restaurants/homepage', method: 'post', id: "contact-form") do %>
+<%#= text_field_tag(:term, nil, placeholder: 'Busca por restaurantes, pratos ou por categorias de pratos', class: "form-control") %>
+<%#= submit_tag('Search') %>
+<%# end %>
 
-<% @dishes.each do |dish| %>
-  <tr>
-    <td><b><%= dish.descricao %></b></td>
-    <td><%= dish.preco %></td>
-    <td><%= dish.tempopreparo %></td>
-    <td><%= link_to 'Visualisar', dish %></td>
-    <td><%= link_to 'Editar', edit_dish_path(dish) %></td>
-    <td><%= link_to 'Excluir', dish, method: :delete, data: { confirm: 'Você tem certeza disso?' } %></td>
-  </tr>
-  <td colspan="6" style="padding-bottom: 15px">
 
-    <span>Ingredients: </span>
-    <% dish.ingredients.order('descricao').each  {|ingredient| %>
-      <i><%= ingredient.descricao %>, </i>
-    <% } %>
-  </td>
 
-<% end %>
-<%= form_tag('/restaurants/homepage', method: 'post') do %>
-  <%=  text_field_tag(:term) %>
-  <%=  submit_tag('Search') %>
-<% end %>
+<section id="contact" class="parallax-section" style="left: -33px">
+  <div class="container">
+    <div class="row">
+
+      <!--      <div class="col-md-offset-3 col-md-6 col-sm-12">-->
+      <!--        <div class="section-title">-->
+      <!--          <h1>Talk to us!</h1>-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+      <!--      <div class="clearfix"></div>-->
+
+      <div class="col-md-offset-2 col-md-8 col-sm-12">
+        <!-- CONTACT FORM HERE -->
+        <!--        <form id="contact-form" action="#" method="get" role="form">-->
+        <%= form_tag('/restaurants/homepage', method: 'post', id: "contact-form") do %>
+
+          <div class="col-md-12 col-sm-12">
+          <div class="row">
+            <%= text_field_tag(:term, nil, placeholder: 'Busca por restaurantes, pratos ou por categorias dos pratos', class: "form-control  col-md-10 col-sm-12", id: "cf-subject") %>
+            <%= submit_tag('Buscar', class: "col-md-2 col-sm-12") %>
+          </div>
+          </div>
+
+        <% end %>
+
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <button class="btn-restaurantes btn btn-primary btn-lg">Restaurantes (<%= @numero_restaurantes %>)</button>
+          <button class="btn-pratos btn btn-primary btn-lg">Pratos (<%= @numero_pratos %>)</button>
+          <button class="btn-categorias btn btn-primary btn-lg">Categorias (<%= @numero_categorias %>)</button>
+      </div>
+
+    </div></div>
+  </div>
+</section>
+
+
+
+<!--<div class="btn-group btn-group-toggle" data-toggle="buttons">-->
+<!--  <label class="btn btn-secondary active">-->
+<!--    <input type="radio" name="options" id="option1" autocomplete="off" checked> Active-->
+<!--  </label>-->
+<!--  <label class="btn btn-secondary">-->
+<!--    <input type="radio" name="options" id="option2" autocomplete="off"> Radio-->
+<!--  </label>-->
+<!--  <label class="btn btn-secondary">-->
+<!--    <input type="radio" name="options" id="option3" autocomplete="off"> Radio-->
+<!--  </label>-->
+<!--</div>-->
+
+
+<div id="conteudo">
+
+  <!--LISTA DE RESTAURANTES-->
+
+  <div class="container restaurantes-pesquisa">
+    <div class="row">
+
+      <% if not @restaurants.blank? %>
+        <% @restaurants.each do |restaurant| %>
+
+          <div class="col-md-6 col-sm-6 pb-1 pl-0">
+            <div class="card">
+              <div class="card-body">
+                <h2<%= restaurant.nome %></h2>
+                <h3><%= restaurant.endereco %></h3>
+                <h4><%= restaurant.telefone %></h4>
+                <span><%= link_to 'Visualisar', restaurant %></span>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      <% else %>
+        <p>Nenhum restaurante com estas características encontrado.</p>
+      <% end %>
+
+    </div>
+  </div>
+
+  <!--LISTA DE PRATOS-->
+
+  <div class="container pratos-pesquisa">
+    <div class="row">
+
+      <% if not @dishes.blank? %>
+        <% @dishes.each do |dish| %>
+
+          <div class="col-md-6 col-sm-6 pb-1 pl-0">
+            <div class="card">
+              <div class="card-body">
+                <h4><b><%= dish.nome %></b></h4>
+                <p>R$ <%= dish.preco %></p>
+                <p>Tempo de preparo: <%= dish.tempopreparo.strftime("%H:%M") %></p>
+                <%= link_to 'Visualisar', dish %>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      <% else %>
+        <p>Nenhum prato com estas características encontrado.</p>
+      <% end %>
+
+    </div>
+  </div>
+
+  <!--LISTA DE CATEGORIAS DOS PRATOS-->
+
+  <div class="container categorias-pesquisa">
+    <div class="row">
+
+      <% if not @categories.blank? %>
+        <% @categories.each do |category| %>
+          <div class="col-md-6 col-sm-6 pb-1 pl-0">
+            <div class="card">
+              <div class="card-body">
+                <tr>
+                  <td><b><%= category.nome %></b></td>
+                  <td><%= link_to 'Visualisar', category%></td>
+                </tr>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>Nenhuma categoria de prato com estas características encontrada.</p>
+      <% end %>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+    $(".restaurantes-pesquisa").show();
+    $(".pratos-pesquisa").hide();
+    $(".categorias-pesquisa").hide();
+
+    $(".btn-restaurantes").click(function () {
+        $(".restaurantes-pesquisa").show();
+        $(".pratos-pesquisa").hide();
+        $(".categorias-pesquisa").hide();
+    });
+
+    $(".btn-pratos").click(function () {
+        $(".pratos-pesquisa").show();
+        $(".restaurantes-pesquisa").hide();
+        $(".categorias-pesquisa").hide();
+    });
+
+    $(".btn-categorias").click(function () {
+        $(".categorias-pesquisa").show();
+        $(".restaurantes-pesquisa").hide();
+        $(".pratos-pesquisa").hide();
+    });
+
+    //var texto = $('#conteudo').html();
+    //var troca = texto.replace(/<%= @termo %>/gi, "<span style='background-color: #FFFF00'>" + '<%= @termo %>' + "</span>");
+    //$('#conteudo').html(troca);
+
+</script>

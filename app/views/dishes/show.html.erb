@@ -43,7 +43,7 @@
           <p>Categoria: <%= @dish.category.nome %></p>
 
           <p>Ingredientes:
-            <% @dish.ingredients.each {|ingredient| %>
+            <% @dish.ingredients.each.order("nome ASC") {|ingredient| %>
               <tr>
                 <td><b><%= ingredient.descricao %></b></td>
               </tr>
